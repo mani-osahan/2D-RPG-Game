@@ -1,0 +1,95 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1701641713
+game.gd::GDScript::-1::1701274526::0::1::::Game<>Node2D<>::
+game.tscn::PackedScene::1452333947841200323::1701639777::0::1::::<><>::res://game.gd<>uid://pk1ktyguvi8r::::res://Scenes/world.tscn<>uid://nnbgcbyig5uj::::res://Scenes/player.tscn<>uid://cerfif6cyp5sg::::res://UI/ui.tscn
+icon.svg::CompressedTexture2D::6521070249321962062::1699653594::1699653606::1::::<><>::
+::res://addons/::1701640656
+::res://addons/godot-git-plugin/::1701640656
+git_plugin.gdextension::GDExtension::-1::1701640656::0::1::::<><>::
+plugin.cfg::TextFile::-1::1701640656::0::1::::<><>::
+THIRDPARTY.md::TextFile::-1::1701640656::0::1::::<><>::
+::res://addons/godot-git-plugin/linux/::1701640656
+::res://addons/godot-git-plugin/macos/::1701640656
+::res://addons/godot-git-plugin/win64/::1701640656
+::res://art/::1700662746
+::res://art/characters/::1699654640
+player.png::CompressedTexture2D::2254047196298038438::1669967699::1699654640::1::::<><>::
+skeleton.png::CompressedTexture2D::6165333038815869342::1669967699::1699654640::1::::<><>::
+slime.png::CompressedTexture2D::3064906456212536327::1669967699::1699654640::1::::<><>::
+::res://art/Health Bar Asset Pack 2 by Adwit Rahman/::1700662746
+beer (1).png::CompressedTexture2D::5997775978135581727::1700662738::1700662746::1::::<><>::
+beer (2).png::CompressedTexture2D::5907803873799983282::1700662738::1700662746::1::::<><>::
+beer (3).png::CompressedTexture2D::586988805139373595::1700662738::1700662746::1::::<><>::
+Darkupdate.png::CompressedTexture2D::166070121614290463::1700662738::1700662746::1::::<><>::
+desktop.ini::TextFile::-1::1700662738::0::1::::<><>::
+greenbar (1).png::CompressedTexture2D::8049910856117804204::1700662738::1700662746::1::::<><>::
+greenbar (2).png::CompressedTexture2D::7880896716515031666::1700662738::1700662746::1::::<><>::
+greenbar (3).png::CompressedTexture2D::8222716204683828069::1700662738::1700662746::1::::<><>::
+HealthBar DARK.png::CompressedTexture2D::2075003643066133068::1700662738::1700662746::1::::<><>::
+redblue (1).png::CompressedTexture2D::7573250209534382455::1700662738::1700662746::1::::<><>::
+redblue (2).png::CompressedTexture2D::3514478598890249463::1700662738::1700662746::1::::<><>::
+redblue (3).png::CompressedTexture2D::830220970004057694::1700662738::1700662746::1::::<><>::
+rpg (1).png::CompressedTexture2D::6279219285415866074::1700662738::1700662746::1::::<><>::
+rpg (2).png::CompressedTexture2D::7023710757045056996::1700662738::1700662746::1::::<><>::
+rpg (3).png::CompressedTexture2D::2391391198385337672::1700662738::1700662746::1::::<><>::
+::res://art/objects/::1699654640
+chest_01.png::CompressedTexture2D::5988120566674629613::1669967699::1699654640::1::::<><>::
+chest_02.png::CompressedTexture2D::5409604325247140696::1669967699::1699654640::1::::<><>::
+objects.png::CompressedTexture2D::5379906372515950642::1669967699::1699654640::1::::<><>::
+rock_in_water_01-sheet.png::CompressedTexture2D::7190193457034214538::1669967699::1699654640::1::::<><>::
+rock_in_water_01.png::CompressedTexture2D::8758998599025139674::1669967699::1699654640::1::::<><>::
+rock_in_water_02.png::CompressedTexture2D::8612248072701000012::1669967699::1699654640::1::::<><>::
+rock_in_water_03.png::CompressedTexture2D::8593628942823096531::1669967699::1699654640::1::::<><>::
+rock_in_water_04.png::CompressedTexture2D::703868558506790327::1669967699::1699654640::1::::<><>::
+rock_in_water_05.png::CompressedTexture2D::4363363640624894453::1669967699::1699654640::1::::<><>::
+rock_in_water_06.png::CompressedTexture2D::7593046299886503558::1669967699::1699654640::1::::<><>::
+::res://art/particles/::1699654640
+dust_particles_01.png::CompressedTexture2D::4959316773238752432::1669967699::1699654640::1::::<><>::
+::res://art/tilesets/::1699654640
+decor_8x8.png::CompressedTexture2D::7137177786344293066::1669967699::1699654640::1::::<><>::
+decor_16x16.png::CompressedTexture2D::5554982225424506906::1669967699::1699654640::1::::<><>::
+fences.png::CompressedTexture2D::4682830467657578752::1669967699::1699654640::1::::<><>::
+grass.png::CompressedTexture2D::8013113325584170744::1669967699::1699654640::1::::<><>::
+plains.png::CompressedTexture2D::4449210327211185623::1669967699::1699654640::1::::<><>::
+water1.png::CompressedTexture2D::1071833813064320253::1669967699::1699654640::1::::<><>::
+water2.png::CompressedTexture2D::4318720032630508576::1669967699::1699654640::1::::<><>::
+water3.png::CompressedTexture2D::7633909814985370721::1669967699::1699654640::1::::<><>::
+water4.png::CompressedTexture2D::7672060159203050195::1669967699::1699654640::1::::<><>::
+water5.png::CompressedTexture2D::5436710692457881749::1669967699::1699654640::1::::<><>::
+water6.png::CompressedTexture2D::7741474176570843588::1669967699::1699654640::1::::<><>::
+water_decorations.png::CompressedTexture2D::71316269516414055::1669967699::1699654640::1::::<><>::
+water_lillies.png::CompressedTexture2D::655567672738083582::1669967699::1699654640::1::::<><>::
+::res://art/tilesets/floors/::1699654640
+carpet.png::CompressedTexture2D::3485816360427382430::1669967699::1699654640::1::::<><>::
+flooring.png::CompressedTexture2D::3824243336274319240::1669967699::1699654640::1::::<><>::
+wooden.png::CompressedTexture2D::7558395843184676333::1669967699::1699654640::1::::<><>::
+::res://art/tilesets/walls/::1699654640
+walls.png::CompressedTexture2D::1271840347807585106::1669967699::1699654640::1::::<><>::
+wooden_door.png::CompressedTexture2D::8284792714794889640::1669967699::1699654640::1::::<><>::
+wooden_door_b.png::CompressedTexture2D::4718456558295337243::1669967699::1699654640::1::::<><>::
+::res://blendspaces/::1701537915
+attack_idle.tres::AnimationNodeBlendSpace2D::2415821373295519598::1701537915::0::1::::<><>::
+::res://resources/::1701639597
+enemyHealth.tres::Resource/enemyHealth::4605487299218061169::1701639597::0::1::::<><>::res://Scripts/enemyHealth.gd
+health_system.tres::Resource::5655386646897287000::1700659290::0::1::::<><>::
+playerDamage.tres::Resource/playerDamage::930823140444078627::1701639597::0::1::::<><>::res://Scripts/playerDamage.gd
+playerHealth.tres::Resource/Resource::8177318215871277843::1700784923::0::1::::<><>::res://Scripts/playerHealth.gd
+::res://Scenes/::1701639784
+enemy.tscn::PackedScene::8546784856558296136::1701639784::0::1::::<><>::res://Scripts/enemy.gd<>uid://bjwwtde8ktw0f::::res://art/characters/slime.png<>uid://b6u6x5uwyyak4::::res://resources/enemyHealth.tres<>res://Scripts/hurtBox.gd<>uid://ni5ryookriil::::res://resources/playerDamage.tres
+open_grassland.tscn::PackedScene::1393413844825726417::1701017531::0::1::::<><>::uid://ejewomkdi87s
+player.tscn::PackedScene::939363417546310681::1701639777::0::1::::<><>::uid://7d43ff2x0ji1::::res://art/characters/player.png<>res://Scripts/player.gd<>res://Scripts/playerHealth.gd<>uid://ni5ryookriil::::res://resources/playerDamage.tres<>res://Scripts/hitBox.gd
+world.tscn::PackedScene::1075073967181194299::1701639777::0::1::::<><>::uid://ejewomkdi87s::::res://tileset/world_tileset.tres<>uid://dt1ekemeu5gs3::::res://Scenes/enemy.tscn
+::res://Scripts/::1701639784
+enemy.gd::GDScript::-1::1701639784::0::1::::<>CharacterBody2D<>::
+enemyHealth.gd::GDScript::-1::1700918269::0::1::::enemyHealth<>Resource<>::
+global.gd::GDScript::-1::1700353472::0::1::::<>Node<>::
+hitBox.gd::GDScript::-1::1700918587::0::1::::hitBox<>Area2D<>::
+hurtBox.gd::GDScript::-1::1701619591::0::1::::hurtBox<>Area2D<>::
+player.gd::GDScript::-1::1701639596::0::1::::player<>CharacterBody2D<>::
+playerDamage.gd::GDScript::-1::1700916614::0::1::::playerDamage<>Resource<>::
+playerHealth.gd::GDScript::-1::1700916781::0::1::::PlayerHealth<>Resource<>::
+::res://tileset/::1701639596
+world_tileset.tres::TileSet::299617684098913030::1701639596::0::1::::<><>::uid://dmfu2no44fxwy::::res://art/tilesets/grass.png<>uid://b4nh3xyujoseh::::res://art/tilesets/plains.png<>uid://ciwcjimm12ktm::::res://art/objects/objects.png
+::res://UI/::1701639777
+ui.gd::GDScript::-1::1701267171::0::1::::UI<>Control<>::
+ui.tscn::PackedScene::5089009345701674714::1701639777::0::1::::<><>::res://UI/ui.gd

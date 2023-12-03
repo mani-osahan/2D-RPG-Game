@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="enemyHealth" load_steps=2 format=3 uid="uid://b6u6x5uwyyak4"]
+
+[ext_resource type="Script" path="res://Scripts/enemyHealth.gd" id="1_ayfdj"]
+
+[resource]
+script = ExtResource("1_ayfdj")
+max_health = 100
+health_debuff = 0
+current_health = 100

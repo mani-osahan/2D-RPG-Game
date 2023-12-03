@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://uxry0qwewor0"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_b638n"]
+[ext_resource type="PackedScene" uid="uid://pk1ktyguvi8r" path="res://Scenes/world.tscn" id="2_13qw2"]
+[ext_resource type="PackedScene" uid="uid://nnbgcbyig5uj" path="res://Scenes/player.tscn" id="3_78skl"]
+[ext_resource type="PackedScene" uid="uid://cerfif6cyp5sg" path="res://UI/ui.tscn" id="4_tfr3o"]
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_b638n")
+
+[node name="world" parent="." instance=ExtResource("2_13qw2")]
+
+[node name="player" parent="." instance=ExtResource("3_78skl")]
+position = Vector2(74, 140)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.02
+drag_top_margin = 0.02
+drag_right_margin = 0.02
+drag_bottom_margin = 0.02
+
+[node name="UI" parent="." instance=ExtResource("4_tfr3o")]
+visible = false

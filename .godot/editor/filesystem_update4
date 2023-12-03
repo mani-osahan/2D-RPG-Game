@@ -1,0 +1,10 @@
+res://Scenes/world.tscn
+res://Scripts/enemy.gd
+res://Scripts/player.gd
+res://tileset/world_tileset.tres
+res://resources/enemyHealth.tres
+res://resources/playerDamage.tres
+res://Scenes/enemy.tscn
+res://Scenes/player.tscn
+res://game.tscn
+res://UI/ui.tscn
