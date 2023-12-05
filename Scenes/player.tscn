@@ -1,13 +1,13 @@
-[gd_scene load_steps=67 format=3 uid="uid://nnbgcbyig5uj"]
+[gd_scene load_steps=68 format=3 uid="uid://nnbgcbyig5uj"]
 
 [ext_resource type="Texture2D" uid="uid://7d43ff2x0ji1" path="res://art/characters/player.png" id="1_7b3qc"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_yb7ih"]
-[ext_resource type="Script" path="res://Scripts/playerHealth.gd" id="2_ig7n0"]
+[ext_resource type="Script" path="res://Scripts/player/player.gd" id="1_76cl6"]
+[ext_resource type="Script" path="res://Scripts/player/playerHealth.gd" id="2_02fkq"]
 [ext_resource type="Resource" uid="uid://ni5ryookriil" path="res://resources/playerDamage.tres" id="3_l186r"]
-[ext_resource type="Script" path="res://Scripts/hitBox.gd" id="4_owst8"]
+[ext_resource type="Script" path="res://Scripts/player/hitBox.gd" id="5_fly6q"]
 
 [sub_resource type="Resource" id="Resource_d5aw5"]
-script = ExtResource("2_ig7n0")
+script = ExtResource("2_02fkq")
 max_health = 100
 health_debuff = 0
 current_health = 100
@@ -15,8 +15,11 @@ current_health = 100
 [sub_resource type="CircleShape2D" id="CircleShape2D_ao2b8"]
 radius = 4.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_16vrd"]
+radius = 4.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_psv04"]
-size = Vector2(6, 5)
+size = Vector2(16, 14)
 
 [sub_resource type="Animation" id="Animation_x8u0s"]
 length = 0.001
@@ -832,16 +835,24 @@ states/idle/position = Vector2(319, 95)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_tm0u6")
 states/walk/position = Vector2(942, -37)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_k4ggl"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_vs5ek"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_qprk3"), "idle", "Walk", SubResource("AnimationNodeStateMachineTransition_3opmg"), "Walk", "idle", SubResource("AnimationNodeStateMachineTransition_3rmah")]
-graph_offset = Vector2(15, -131)
+graph_offset = Vector2(-73, -134)
 
 [node name="player" type="CharacterBody2D"]
-script = ExtResource("1_yb7ih")
+script = ExtResource("1_76cl6")
 health = SubResource("Resource_d5aw5")
 damage = ExtResource("3_l186r")
+kb_power = 1500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_ao2b8")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_16vrd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 reset_on_save = false
@@ -857,12 +868,12 @@ hframes = 6
 vframes = 10
 
 [node name="hitBox" type="Area2D" parent="Sprite2D"]
-script = ExtResource("4_owst8")
+input_pickable = false
+script = ExtResource("5_fly6q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/hitBox"]
-position = Vector2(0, 12)
+position = Vector2(-0.5, 3.5)
 shape = SubResource("RectangleShape2D_psv04")
-disabled = true
 one_way_collision_margin = 0.0
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -883,8 +894,10 @@ parameters/walk/blend_position = Vector2(0, 0)
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0, 0.6, 0.164706, 1)
 offset_left = -21.0
-offset_top = 17.0
+offset_top = 13.0
 offset_right = 64.0
-offset_bottom = 31.0
+offset_bottom = 27.0
 scale = Vector2(0.505, 0.505)
 show_percentage = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

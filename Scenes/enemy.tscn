@@ -1,10 +1,10 @@
-[gd_scene load_steps=42 format=3 uid="uid://dt1ekemeu5gs3"]
+[gd_scene load_steps=56 format=3 uid="uid://dt1ekemeu5gs3"]
 
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_dsa6h"]
+[ext_resource type="Script" path="res://Scripts/enemy/enemy.gd" id="1_d04so"]
 [ext_resource type="Texture2D" uid="uid://bjwwtde8ktw0f" path="res://art/characters/slime.png" id="1_oqv34"]
 [ext_resource type="Resource" uid="uid://b6u6x5uwyyak4" path="res://resources/enemyHealth.tres" id="2_gl754"]
-[ext_resource type="Script" path="res://Scripts/hurtBox.gd" id="3_tdxjm"]
 [ext_resource type="Resource" uid="uid://ni5ryookriil" path="res://resources/playerDamage.tres" id="3_u4hp0"]
+[ext_resource type="Script" path="res://Scripts/enemy/hurtBox.gd" id="5_j0m1c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pploq"]
 atlas = ExtResource("1_oqv34")
@@ -321,14 +321,77 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxsa2"]
 radius = 7.0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sglos"]
+animation = &"damaged"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tc4fb"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k0dxg"]
+animation = &"hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kjo63"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8gq3d"]
+animation = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wq26c"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m7g5o"]
+advance_mode = 2
+advance_condition = &"is_dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f7vga"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4hnl3"]
+advance_mode = 2
+advance_condition = &"is_hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jenl4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gnmr3"]
+advance_mode = 2
+advance_condition = &"is_damaged"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5xilp"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ldxr"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wl560"]
+advance_mode = 2
+advance_condition = &"is_moving"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6tc2t"]
+states/Start/position = Vector2(198, 114)
+states/damaged/node = SubResource("AnimationNodeAnimation_sglos")
+states/damaged/position = Vector2(390, -10)
+states/death/node = SubResource("AnimationNodeAnimation_tc4fb")
+states/death/position = Vector2(390, 226)
+states/hit/node = SubResource("AnimationNodeAnimation_k0dxg")
+states/hit/position = Vector2(567, 203)
+states/idle/node = SubResource("AnimationNodeAnimation_kjo63")
+states/idle/position = Vector2(390, 114)
+states/move/node = SubResource("AnimationNodeAnimation_8gq3d")
+states/move/position = Vector2(589, 9)
+transitions = ["death", "idle", SubResource("AnimationNodeStateMachineTransition_wq26c"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_m7g5o"), "hit", "idle", SubResource("AnimationNodeStateMachineTransition_f7vga"), "idle", "hit", SubResource("AnimationNodeStateMachineTransition_4hnl3"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_jenl4"), "idle", "damaged", SubResource("AnimationNodeStateMachineTransition_gnmr3"), "damaged", "idle", SubResource("AnimationNodeStateMachineTransition_5xilp"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_2ldxr"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_wl560")]
+graph_offset = Vector2(-42, -86)
 
 [node name="enemy" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_dsa6h")
+script = ExtResource("1_d04so")
 enemyHealth = ExtResource("2_gl754")
 playerDamage = ExtResource("3_u4hp0")
+kb_power = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -338,6 +401,8 @@ animation = &"idle"
 offset = Vector2(0, -5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+speed_scale = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_adyur")
 }
@@ -350,7 +415,7 @@ vframes = 5
 
 [node name="hurtBox" type="Area2D" parent="Sprite2D"]
 visible = false
-script = ExtResource("3_tdxjm")
+script = ExtResource("5_j0m1c")
 
 [node name="CollisionHurtBox" type="CollisionShape2D" parent="Sprite2D/hurtBox"]
 position = Vector2(-2, 5)
@@ -376,5 +441,10 @@ wait_time = 3.0
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_6tc2t")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_damaged = false
+parameters/conditions/is_dead = false
+parameters/conditions/is_hit = false
+parameters/conditions/is_moving = false
 
 [connection signal="timeout" from="despawn_timer" to="." method="_on_despawn_timer_timeout"]
