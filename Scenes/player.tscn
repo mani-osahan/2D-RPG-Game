@@ -874,6 +874,7 @@ script = ExtResource("5_fly6q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/hitBox"]
 position = Vector2(-0.5, 3.5)
 shape = SubResource("RectangleShape2D_psv04")
+disabled = true
 one_way_collision_margin = 0.0
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
