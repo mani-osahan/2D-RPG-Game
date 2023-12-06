@@ -35,7 +35,7 @@ func take_damage(amount: int):
 	enemyHealth.damage_taken(amount)
 	
 	enemy_knockback()
-
+	
 	#play animation when enemy is damaged
 	animationState.travel("damaged")
 	

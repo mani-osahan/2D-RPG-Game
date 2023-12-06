@@ -5,10 +5,22 @@ class_name player
 @export var health : PlayerHealth
 @export var damage : playerDamage
 
+
+#frame freeze variables and script call
+@export_category("Frame Freeze")
+@export var frame_freeze : frameFreeze
+@export var ff_timescale : float = 0.0
+@export var ff_duration : float = 0.0
+
+#knockback power variable for on hit  
+@export_category("Knockback")
 @export var kb_power : int = 500
 
+#character speed and input vector - DEFAULT TO VECTOR ZERO
 var speed = 75
 var input_vector: Vector2 = Vector2.ZERO
+
+#get the global mouse position of windows mouse
 @onready var mouse_position = get_global_mouse_position()
 
 #animation onready
@@ -27,6 +39,7 @@ func _ready():
 	animation_tree.active = true
 	animation_player = $AnimationPlayer
 	animationState.travel("idle")
+	
 	
 	#health ready
 	health.reset()
@@ -82,12 +95,18 @@ func _on_area_2d_body_entered(area):
 	print(area.name)
 	if area.name == "enemy":
 		health.damage_taken(25)
-		
+		frame_freeze.frameFreeze(ff_timescale, ff_duration)
 		if health.current_health == 0:
 			queue_free()
 		
 		knockback()
 
+#MAKE SURE TO USE FF SCRIPT INSTEAD OF THIS FUNCTION
+#func frameFreeze(timeScale, duration):
+#	Engine.time_scale = timeScale
+#	await get_tree().create_timer(duration * timeScale).timeout
+#	Engine.time_scale = 1.0
+#
 
 func knockback():
 	var kb_direction = -velocity * kb_power

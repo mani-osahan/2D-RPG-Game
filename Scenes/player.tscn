@@ -1,10 +1,11 @@
-[gd_scene load_steps=68 format=3 uid="uid://nnbgcbyig5uj"]
+[gd_scene load_steps=69 format=3 uid="uid://nnbgcbyig5uj"]
 
 [ext_resource type="Texture2D" uid="uid://7d43ff2x0ji1" path="res://art/characters/player.png" id="1_7b3qc"]
 [ext_resource type="Script" path="res://Scripts/player/player.gd" id="1_76cl6"]
 [ext_resource type="Script" path="res://Scripts/player/playerHealth.gd" id="2_02fkq"]
 [ext_resource type="Resource" uid="uid://ni5ryookriil" path="res://resources/playerDamage.tres" id="3_l186r"]
 [ext_resource type="Script" path="res://Scripts/player/hitBox.gd" id="5_fly6q"]
+[ext_resource type="Script" path="res://Scripts/frameFreeze.gd" id="6_re8w5"]
 
 [sub_resource type="Resource" id="Resource_d5aw5"]
 script = ExtResource("2_02fkq")
@@ -837,10 +838,13 @@ states/walk/position = Vector2(942, -37)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_k4ggl"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_vs5ek"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_qprk3"), "idle", "Walk", SubResource("AnimationNodeStateMachineTransition_3opmg"), "Walk", "idle", SubResource("AnimationNodeStateMachineTransition_3rmah")]
 graph_offset = Vector2(-73, -134)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("frame_freeze")]
 script = ExtResource("1_76cl6")
 health = SubResource("Resource_d5aw5")
 damage = ExtResource("3_l186r")
+frame_freeze = NodePath("frameFreeze")
+ff_timescale = 0.25
+ff_duration = 1.0
 kb_power = 1500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -900,5 +904,8 @@ offset_right = 64.0
 offset_bottom = 27.0
 scale = Vector2(0.505, 0.505)
 show_percentage = false
+
+[node name="frameFreeze" type="Node" parent="."]
+script = ExtResource("6_re8w5")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

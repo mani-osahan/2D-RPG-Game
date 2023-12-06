@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="frameFreeze" load_steps=2 format=3 uid="uid://bfbjmcjwkgtgc"]
+
+[ext_resource type="Script" path="res://Scripts/frameFreeze.gd" id="1_tig5w"]
+
+[resource]
+script = ExtResource("1_tig5w")
