@@ -33,13 +33,21 @@ var animation_player = null
 @onready var progressBar : ProgressBar = $ProgressBar
 
 signal player_attack
+var attack_arr = 0
+
+enum {
+	IDLE,
+	MOVE,
+	ATTACK
+}
+
+var player_state = MOVE
 
 func _ready():
 	#animation ready
 	animation_tree.active = true
 	animation_player = $AnimationPlayer
 	animationState.travel("idle")
-	
 	
 	#health ready
 	health.reset()
@@ -48,19 +56,24 @@ func _ready():
 	
 func _process(delta):
 	progressBar.value = health.current_health
-	move_state(delta)
+	match player_state:
+		IDLE: 
+			mouse_rotate(delta)
+		MOVE:
+			move_state(delta)
+		ATTACK:
+			attack_animation(delta, attack_arr)
 	mouse_rotate(delta)
-	attack_animation(delta)
-	
-func mouse_rotate(delta):
+
+func _physics_process(delta):
 	mouse_position = get_global_mouse_position() - position
-	
+
+func mouse_rotate(delta):
 	animation_tree.set("parameters/idle/blend_position", mouse_position)
 	animation_tree.set("parameters/Walk/walk/blend_position", mouse_position)
 	
 func move_state(delta):
-	var mouse_position = get_global_mouse_position() - position
-	mouse_position.normalized()
+	player_state = MOVE
 	#These lines are for movement with key press (WASD)
 	input_vector.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	input_vector.y = Input.get_action_strength("down") - Input.get_action_strength("up")
@@ -69,14 +82,20 @@ func move_state(delta):
 	if input_vector != Vector2.ZERO:
 		animationState.travel("Walk")
 		velocity = input_vector * speed * delta
-	
 	else:
 		#IDLE ANIMATION
 		velocity = Vector2.ZERO
 		animationState.travel("idle")
-		
-	#ATTACK ANIMATION
+	
+
 	move_and_collide(velocity)
+	
+	#ATTACK ANIMATION
+	if Input.is_action_pressed("attack"):
+		attack_arr = mouse_position
+		print(attack_arr[0])
+		player_state = ATTACK
+		attack_animation(delta, attack_arr)	
 
 # call damage_taken function in playerHealth 
 # when player takes damage from enemies 
@@ -84,13 +103,25 @@ func damage_taken():
 	health.health_changed.emit()
 	health.damage_taken(damage.damage)
 	
-func attack_animation(delta):
-	if Input.is_action_just_pressed("attack"):
-		animationState.travel("attack")
-		player_attack.emit("player_attack")
-		animation_tree.set("parameters/attack/attack/blend_position", mouse_position)
+# attack state
+func attack_animation(delta, attack_arr):
+	player_state = ATTACK
+	animationState.travel("attack")
+	player_attack.emit("player_attack")
+	if player_state == ATTACK: 
+		animation_tree.set("parameters/attack/attack/blend_position", 	attack_arr)
 
+func attack_animation_finished():
+	player_state = MOVE
+	attack_arr = 0
 
+func knockback():
+	var kb_direction = - velocity * kb_power
+	velocity = kb_direction
+	
+	move_and_slide()
+	
+	
 func _on_area_2d_body_entered(area):
 	print(area.name)
 	if area.name == "enemy":
@@ -100,18 +131,3 @@ func _on_area_2d_body_entered(area):
 			queue_free()
 		
 		knockback()
-
-#MAKE SURE TO USE FF SCRIPT INSTEAD OF THIS FUNCTION
-#func frameFreeze(timeScale, duration):
-#	Engine.time_scale = timeScale
-#	await get_tree().create_timer(duration * timeScale).timeout
-#	Engine.time_scale = 1.0
-#
-
-func knockback():
-	var kb_direction = -velocity * kb_power
-	velocity = kb_direction
-	print(position)
-	
-	move_and_slide()
-	print(position)
