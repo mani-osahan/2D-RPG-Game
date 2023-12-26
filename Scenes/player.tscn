@@ -896,13 +896,15 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-122, -94)
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("frame_freeze")]
+collision_mask = 3
 script = ExtResource("1_76cl6")
 health = SubResource("Resource_d5aw5")
 damage = ExtResource("3_l186r")
 frame_freeze = NodePath("frameFreeze")
-ff_timescale = 0.25
-ff_duration = 1.0
-kb_power = 1800
+ff_timescale = 0.03
+ff_duration = 0.5
+kb_power = 1500
+attack_delay = 0.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -953,6 +955,7 @@ parameters/idle/blend_position = Vector2(-0.994465, 0.00388694)
 parameters/walk/blend_position = Vector2(0, 0)
 
 [node name="playerAttack" type="Timer" parent="."]
+one_shot = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0, 0.6, 0.164706, 1)

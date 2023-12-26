@@ -5,3 +5,8 @@
 [resource]
 script = ExtResource("1_y1s4u")
 damage = 5
+frame_freeze = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","script":Resource("res://Scripts/frameFreeze.gd"),"timescale":0,"duration":0)
+
+ff_timescale = 0.5
+ff_duration = 1.0
+kb_power = 500

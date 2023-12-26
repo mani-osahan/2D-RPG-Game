@@ -315,11 +315,11 @@ _data = {
 "move": SubResource("Animation_xwdli")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ty8t4"]
-radius = 8.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxsa2"]
 radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ty8t4"]
+radius = 8.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sglos"]
 animation = &"damaged"
@@ -410,6 +410,12 @@ libraries = {
 "": SubResource("AnimationLibrary_adyur")
 }
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_dxsa2")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -7)
 texture = ExtResource("1_oqv34")
@@ -423,12 +429,6 @@ script = ExtResource("5_j0m1c")
 [node name="CollisionHurtBox" type="CollisionShape2D" parent="Sprite2D/hurtBox"]
 position = Vector2(-2, 5)
 shape = SubResource("CircleShape2D_ty8t4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_dxsa2")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0, 0.6, 0.164706, 1)
@@ -451,6 +451,8 @@ parameters/conditions/is_hit = false
 parameters/conditions/is_moving = false
 
 [node name="enemyDetection" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="enemyDetection"]
 position = Vector2(0, -5)

@@ -8,3 +8,6 @@ res://Scenes/player.tscn
 res://game.tscn
 res://UI/ui.tscn
 res://Scenes/open_grassland.tscn
+res://Scripts/player/playerHealth.gd
+res://Scripts/player/playerDamage.gd
+res://resources/playerDamage.tres

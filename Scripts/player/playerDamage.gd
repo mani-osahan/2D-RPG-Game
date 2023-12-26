@@ -11,4 +11,3 @@ func playerDamage(damage):
 	damage = min(0,damage)
 
 
-	

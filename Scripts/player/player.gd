@@ -35,6 +35,10 @@ var animation_player = null
 signal player_attack
 var attack_arr = 0
 
+#attack cooldown
+@onready var attack_cooldown : Timer = $playerAttack
+@export var attack_delay : float = 0.5
+
 enum {
 	IDLE,
 	MOVE,
@@ -52,7 +56,6 @@ func _ready():
 	#health ready
 	health.reset()
 	progressBar.max_value = health.max_health
-	
 	
 func _process(delta):
 	progressBar.value = health.current_health
@@ -86,14 +89,13 @@ func move_state(delta):
 		#IDLE ANIMATION
 		velocity = Vector2.ZERO
 		animationState.travel("idle")
-	
 
 	move_and_collide(velocity)
 	
 	#ATTACK ANIMATION
-	if Input.is_action_pressed("attack"):
+	if Input.is_action_pressed("attack") and attack_cooldown.is_stopped():
+		attack_cooldown.start(attack_delay)
 		attack_arr = mouse_position
-		print(attack_arr[0])
 		player_state = ATTACK
 		attack_animation(delta, attack_arr)	
 
@@ -106,15 +108,16 @@ func damage_taken():
 # attack state
 func attack_animation(delta, attack_arr):
 	player_state = ATTACK
-	animationState.travel("attack")
-	player_attack.emit("player_attack")
-	if player_state == ATTACK: 
+
+	if player_state == ATTACK : 
+		animationState.travel("attack")
+		player_attack.emit("player_attack")
 		animation_tree.set("parameters/attack/attack/blend_position", 	attack_arr)
 
 func attack_animation_finished():
 	player_state = MOVE
 	attack_arr = 0
-
+	
 func knockback():
 	var kb_direction = - velocity * kb_power
 	velocity = kb_direction
